@@ -17,16 +17,19 @@ const ProtectedRoute = () => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
+    <div className="flex min-h-screen flex-col bg-white text-gray-900">
       <Header />
-      <div className="flex flex-1">
+
+      <div className="flex flex-1 bg-white">
         <Sidebar />
-        <main className="flex-1 bg-slate-950">
+
+        <main className="flex-1 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
             <Outlet />
           </div>
         </main>
       </div>
+
       <Footer />
     </div>
   );

@@ -13,7 +13,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="hidden min-h-screen w-60 border-r border-emerald-900/60 bg-slate-950 lg:block">
+    <aside className="hidden min-h-screen w-60 border-r border-gray-200 bg-white lg:block">
       <nav className="space-y-1 px-3 py-4">
         {menuItems.map((item) => {
           const Icon = item.icon;
@@ -28,8 +28,8 @@ const Sidebar = () => {
                 transition-colors duration-150
                 ${
                   isActive
-                    ? "bg-emerald-700/80 text-emerald-50 shadow-sm"
-                    : "text-slate-200 hover:bg-slate-900 hover:text-emerald-200"
+                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-emerald-700"
                 }
               `}
             >

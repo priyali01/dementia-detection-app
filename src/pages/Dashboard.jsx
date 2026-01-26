@@ -1,7 +1,4 @@
 // src/pages/Dashboard.jsx
-import Header from "../components/layout/Header.jsx";
-import Footer from "../components/layout/Footer.jsx";
-import Sidebar from "../components/layout/Sidebar.jsx";
 import QuickStats from "../components/dashboard/QuickStats.jsx";
 import ProgressChart from "../components/dashboard/ProgressChart.jsx";
 import RecentAssessments from "../components/dashboard/RecentAssessments.jsx";
@@ -28,7 +25,7 @@ const Dashboard = () => {
     {
       icon: "⚠️",
       value: 1,
-      label: "High‑risk flagged",
+      label: "High-risk flagged",
       bgColor: "bg-rose-100",
       trend: 0,
     },
@@ -44,49 +41,37 @@ const Dashboard = () => {
   const recentAssessments = [
     {
       id: "1",
-      patient: "Demo Patient",
+      type: "Cognitive Test",
       date: "2026-01-20",
       score: 65,
-      risk: "Medium",
-      status: "Completed",
+      status: "completed",
     },
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
-      <Header />
+    <div className="min-h-screen bg-white text-gray-900 px-4 py-4 sm:px-6 lg:px-8">
+      <section className="mb-6">
+        <h1 className="text-2xl font-semibold md:text-3xl">
+          Welcome back, {user?.firstName || "User"}
+        </h1>
+        <p className="mt-1 text-sm text-gray-500">
+          Review recent assessments and track changes over time.
+        </p>
+      </section>
 
-      <div className="flex flex-1">
-        <aside className="hidden w-60 border-r border-emerald-900/60 bg-slate-950/80 lg:block">
-          <Sidebar />
-        </aside>
+      <section className="space-y-6">
+        <QuickStats stats={stats} />
 
-        <main className="flex-1 px-4 py-4 sm:px-6 lg:px-8">
-          <section className="mb-6">
-            <h1 className="text-2xl font-semibold text-emerald-50 md:text-3xl">
-              Welcome back, {user?.firstName || "User"}
-            </h1>
-            <p className="mt-1 text-sm text-slate-400">
-              Review recent assessments and track changes over time.
-            </p>
-          </section>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <ProgressChart data={trendData} />
+          </div>
 
-          <section className="space-y-6">
-            <QuickStats stats={stats} />
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <ProgressChart data={trendData} />
-              </div>
-              <div className="lg:col-span-1">
-                <RecentAssessments items={recentAssessments} />
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-
-      <Footer />
+          <div className="lg:col-span-1">
+            <RecentAssessments assessments={recentAssessments} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

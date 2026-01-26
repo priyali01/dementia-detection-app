@@ -1,9 +1,6 @@
 // src/pages/HistoryPage.jsx
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/layout/Header.jsx";
-import Footer from "../components/layout/Footer.jsx";
-import Sidebar from "../components/layout/Sidebar.jsx";
 import Card from "../components/common/Card.jsx";
 import Button from "../components/common/Button.jsx";
 
@@ -49,92 +46,78 @@ const HistoryPage = () => {
 
   const riskColor = (risk) =>
     risk === "High"
-      ? "text-rose-400"
+      ? "text-red-600"
       : risk === "Medium"
-      ? "text-amber-300"
-      : "text-emerald-300";
+      ? "text-amber-600"
+      : "text-emerald-600";
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
-      <Header />
-
-      <div className="flex flex-1">
-        <aside className="hidden w-60 border-r border-emerald-900/60 bg-slate-950/80 lg:block">
-          <Sidebar />
-        </aside>
-
-        <main className="flex-1 px-4 py-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl space-y-6">
-            <header className="flex items-center justify-between gap-3">
-              <div>
-                <h1 className="text-2xl font-semibold text-emerald-50 md:text-3xl">
-                  Assessment history
-                </h1>
-                <p className="mt-1 text-sm text-slate-400">
-                  Review previous assessments and open detailed results.
-                </p>
-              </div>
-              <Button onClick={() => navigate("/assessments/new")}>
-                New assessment
-              </Button>
-            </header>
-
-            <Card>
-              {assessments.length === 0 ? (
-                <p className="text-sm text-slate-400">
-                  No assessments yet. Start by running a new assessment.
-                </p>
-              ) : (
-                <div className="overflow-x-auto">
-                  <table className="min-w-full text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-emerald-900/60 text-xs uppercase tracking-wide text-slate-400">
-                        <th className="py-2 pr-4">Date</th>
-                        <th className="py-2 pr-4">Score</th>
-                        <th className="py-2 pr-4">Risk level</th>
-                        <th className="py-2 pr-4">Status</th>
-                        <th className="py-2 pr-4 text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {assessments.map((a) => (
-                        <tr
-                          key={a.id}
-                          className="border-b border-emerald-900/40 last:border-0"
-                        >
-                          <td className="py-2 pr-4 text-slate-100">
-                            {formatDate(a.date)}
-                          </td>
-                          <td className="py-2 pr-4 text-slate-100">
-                            {a.score}
-                          </td>
-                          <td className={`py-2 pr-4 font-medium ${riskColor(a.risk)}`}>
-                            {a.risk}
-                          </td>
-                          <td className="py-2 pr-4 text-slate-300">
-                            {a.status}
-                          </td>
-                          <td className="py-2 pr-0 text-right">
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              onClick={() => navigate(`/results/${a.id}`)}
-                            >
-                              View
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </Card>
+    <div className="min-h-screen bg-white text-gray-900 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-6">
+        <header className="flex items-center justify-between gap-3">
+          <div>
+            <h1 className="text-2xl font-semibold md:text-3xl">
+              Assessment history
+            </h1>
+            <p className="mt-1 text-sm text-gray-500">
+              Review previous assessments and open detailed results.
+            </p>
           </div>
-        </main>
-      </div>
 
-      <Footer />
+          <Button onClick={() => navigate("/assessments/new")}>
+            New assessment
+          </Button>
+        </header>
+
+        <Card>
+          {assessments.length === 0 ? (
+            <p className="text-sm text-gray-500">
+              No assessments yet. Start by running a new assessment.
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200 text-xs uppercase tracking-wide text-gray-500">
+                    <th className="py-2 pr-4">Date</th>
+                    <th className="py-2 pr-4">Score</th>
+                    <th className="py-2 pr-4">Risk level</th>
+                    <th className="py-2 pr-4">Status</th>
+                    <th className="py-2 pr-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {assessments.map((a) => (
+                    <tr
+                      key={a.id}
+                      className="border-b border-gray-100 last:border-0"
+                    >
+                      <td className="py-2 pr-4 text-gray-900">
+                        {formatDate(a.date)}
+                      </td>
+                      <td className="py-2 pr-4 text-gray-900">{a.score}</td>
+                      <td className={`py-2 pr-4 font-medium ${riskColor(a.risk)}`}>
+                        {a.risk}
+                      </td>
+                      <td className="py-2 pr-4 text-gray-600">{a.status}</td>
+                      <td className="py-2 pr-0 text-right">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => navigate(`/results/${a.id}`)}
+                        >
+                          View
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Card>
+      </div>
     </div>
   );
 };

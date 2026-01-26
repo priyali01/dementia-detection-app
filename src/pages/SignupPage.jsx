@@ -27,10 +27,18 @@ const schema = yup
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Please confirm your password"),
+    // validate the HTML date string and ensure it's not in the future
     dateOfBirth: yup
-      .date()
-      .max(new Date(), "Date cannot be in the future")
-      .required("Date of birth is required"),
+      .string()
+      .required("Date of birth is required")
+      .test("max-today", "Date cannot be in the future", (value) => {
+        if (!value) return false;
+        const selected = new Date(value);
+        const today = new Date();
+        selected.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+        return selected <= today;
+      }),
     agreeToTerms: yup
       .boolean()
       .oneOf([true], "You must accept the terms and conditions"),
@@ -38,7 +46,6 @@ const schema = yup
   .required();
 
 const SignupPage = () => {
-  const [selectedUserType, setSelectedUserType] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -49,11 +56,13 @@ const SignupPage = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const password = watch("password", "");
+  const selectedUserType = watch("userType");
 
   const getPasswordStrength = () => {
     if (!password) return { strength: 0, label: "", color: "" };
@@ -128,7 +137,9 @@ const SignupPage = () => {
               <button
                 key={type}
                 type="button"
-                onClick={() => setSelectedUserType(type)}
+                onClick={() =>
+                  setValue("userType", type, { shouldValidate: true })
+                }
                 className={`border rounded-lg px-3 py-2 text-sm capitalize ${
                   selectedUserType === type
                     ? "border-blue-600 bg-blue-50 text-blue-700"
@@ -139,11 +150,6 @@ const SignupPage = () => {
               </button>
             ))}
           </div>
-          <input
-            type="hidden"
-            value={selectedUserType}
-            {...register("userType")}
-          />
           {errors.userType && (
             <p className="mt-1 text-xs text-red-600">
               {errors.userType.message}
