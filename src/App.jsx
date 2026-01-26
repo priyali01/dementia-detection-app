@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from './context/AuthContext'
+import { AssessmentProvider } from './context/AssessmentContext'
+import { SettingsProvider } from './context/SettingsContext'
+
+// Pages
+import LandingPage from './pages/LandingPage'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
+import Dashboard from './pages/Dashboard'
+import NewAssessment from './pages/NewAssessment'
+import TranscriptReview from './pages/TranscriptReview'
+import ProcessingPage from './pages/ProcessingPage'
+import ResultsPage from './pages/ResultsPage'
+import HistoryPage from './pages/HistoryPage'
+import SettingsPage from './pages/SettingsPage'
+import NotFoundPage from './pages/NotFoundPage'
+
+// Layout
+import ProtectedRoute from './components/layout/ProtectedRoute'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AuthProvider>
+      <AssessmentProvider>
+        <SettingsProvider>
+          <div className="App">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/assessment/new" element={<NewAssessment />} />
+                <Route path="/assessment/transcript" element={<TranscriptReview />} />
+                <Route path="/assessment/processing" element={<ProcessingPage />} />
+                <Route path="/results/:id" element={<ResultsPage />} />
+                <Route path="/history" element={<HistoryPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+              </Route>
+              
+              {/* 404 */}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+            
+            {/* Global Toast Notifications */}
+            <Toaster position="top-right" />
+          </div>
+        </SettingsProvider>
+      </AssessmentProvider>
+    </AuthProvider>
   )
 }
 
