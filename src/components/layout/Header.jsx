@@ -1,3 +1,4 @@
+// src/components/layout/Header.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, Bell, User, Settings, LogOut } from "lucide-react";
@@ -21,7 +22,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/dashboard" className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 md:h-10 md:w-10">
-              <span className="text-lg font-bold text-white md:text-xl">D</span>
+              <span className="text-lg font-bold text-white md:text-xl">
+                D
+              </span>
             </div>
             <span className="hidden text-base font-semibold text-emerald-50 sm:block md:text-lg">
               Dementia Detection
@@ -35,19 +38,19 @@ const Header = () => {
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
             <Link
               to="/dashboard"
-              className="hover:text-emerald-300 transition-colors"
+              className="transition-colors hover:text-emerald-300"
             >
               Dashboard
             </Link>
             <Link
-              to="/assessment/new"
-              className="hover:text-emerald-300 transition-colors"
+              to="/assessments/new"
+              className="transition-colors hover:text-emerald-300"
             >
               New Assessment
             </Link>
             <Link
               to="/history"
-              className="hover:text-emerald-300 transition-colors"
+              className="transition-colors hover:text-emerald-300"
             >
               History
             </Link>
@@ -74,7 +77,7 @@ const Header = () => {
                   <User className="h-4 w-4 text-white md:h-5 md:w-5" />
                 </div>
                 <span className="hidden text-sm font-medium text-emerald-50 md:block">
-                  {user?.name || "User"}
+                  {user?.firstName || "User"}
                 </span>
               </button>
 
@@ -122,7 +125,7 @@ const Header = () => {
                 Dashboard
               </Link>
               <Link
-                to="/assessment/new"
+                to="/assessments/new"
                 className="rounded-lg px-3 py-2 text-slate-100 transition-colors hover:bg-slate-800"
                 onClick={() => setMobileMenuOpen(false)}
               >

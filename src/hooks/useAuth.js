@@ -1,25 +1,11 @@
-// import { createContext, useContext, useState } from "react";
+// src/hooks/useAuth.js
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
-// const AuthContext = createContext(null);
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-//   const [loading] = useState(false); // simple placeholder
-
-//   const login = (fakeUser) => setUser(fakeUser);
-//   const logout = () => setUser(null);
-
-//   const value = {
-//     user,
-//     isAuthenticated: !!user,
-//     loading,
-//     login,
-//     logout,
-//   };
-
-//   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-// };
-
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return ctx;
+};

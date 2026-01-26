@@ -1,3 +1,4 @@
+// src/components/layout/Footer.jsx
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Mail } from "lucide-react";
 
@@ -51,7 +52,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Information */}
           <div>
             <h3 className="mb-3 text-base font-semibold text-emerald-100">
               Information
@@ -78,7 +79,7 @@ const Footer = () => {
                   to="/hipaa"
                   className="text-slate-300 transition-colors hover:text-emerald-300"
                 >
-                  Data & compliance
+                  Data &amp; compliance
                 </Link>
               </li>
             </ul>
@@ -90,7 +91,12 @@ const Footer = () => {
               Contact
             </h3>
             <p className="mb-3 text-xs text-slate-300 md:text-sm">
-              support@dementiadetection.example
+              <a
+                href="mailto:support@dementiadetection.example"
+                className="text-emerald-300 underline"
+              >
+                support@dementiadetection.example
+              </a>
             </p>
             <div className="flex gap-4 text-slate-400">
               <a
