@@ -1,16 +1,41 @@
-# React + Vite
+# Dementia Detection Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application to help clinicians, caregivers, and patients manage dementia screening assessments, view results, and track changes over time.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Landing page explaining the assessment tool and flow
+- Authentication: signup, login, logout, reset password
+- Protected dashboard after login
+- Create new dementia assessments with guided forms
+- View assessment history and individual assessment details
+- Basic profile/settings screen
+- Responsive, mobile‑first UI designed with accessibility in mind
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- JavaScript with JSDoc-style types
+- React Router for client-side routing
+- react-hook-form + Yup for form handling and validation
+- Tailwind CSS (or your chosen utility/CSS framework)
+- lucide-react for icons
+- React Context for auth, assessments, and settings state
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm, pnpm, or yarn
+- Git
+
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+
+# Install dependencies
+npm install
