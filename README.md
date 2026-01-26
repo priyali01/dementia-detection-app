@@ -34,8 +34,11 @@ A modern web application to help clinicians, caregivers, and patients manage dem
 
 ```bash
 # Clone the repo
-git clone https://github.com/<your-username>/<your-repo>.git
+https://github.com/priyali01/dementia-detection-app.git
 cd <your-repo>
 
 # Install dependencies
 npm install
+
+# Run Command
+npm run dev
