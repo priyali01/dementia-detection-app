@@ -17,7 +17,7 @@ const LandingPage = () => {
       <Features />
       <Testimonials />
       <FAQ />
-      <CTASection />
+      {/* <CTASection /> */}
       <Footer />
     </div>
   );
