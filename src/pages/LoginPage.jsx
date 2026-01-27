@@ -11,7 +11,7 @@
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [errors, setErrors] = useState({});
 //   const [isLoading, setIsLoading] = useState(false);
-  
+
 //   const { login } = useAuth();
 //   const navigate = useNavigate();
 
@@ -36,22 +36,22 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     if (!validateForm()) return;
 
 //     setIsLoading(true);
-    
+
 //     try {
 //       // Simulate API call
 //       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
 //       // Mock login - replace with actual API call
 //       login({
 //         email: formData.email,
 //         name: formData.email.split('@')[0],
 //         id: '123'
 //       });
-      
+
 //       navigate('/dashboard');
 //     } catch (error) {
 //       setErrors({ submit: 'Invalid email or password' });
@@ -294,7 +294,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       await login({ email: data.email, password: data.password });
-      navigate("/dashboard");
+      navigate("/patient/dashboard");
     } catch (err) {
       setError(err?.message || "Login failed. Please try again.");
     } finally {
